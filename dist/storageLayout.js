@@ -61,8 +61,15 @@ class StorageLayout {
                     });
                 }
                 data.contracts.push(contract);
+                const output = JSON.parse(JSON.stringify(data));
+                for (const contract of output.contracts) {
+                    for (const stateVariable of contract.stateVariables) {
+                        delete stateVariable.idx;
+                        delete stateVariable.artifact;
+                    }
+                }
                 // TODO: export the storage layout to the ./storageLayout/output.md
-                fs_1.default.writeFileSync(outputDirectory + "/output.json", JSON.stringify(data, null, 2));
+                fs_1.default.writeFileSync(outputDirectory + "/output.json", JSON.stringify(output, null, 2));
             }
         }
         const prettifier = new prettifier_1.Prettify(data.contracts);
