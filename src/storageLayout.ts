@@ -83,7 +83,7 @@ export class StorageLayout {
         }
 
         // TODO: export the storage layout to the ./storageLayout/output.md
-        fs.writeFileSync(outputDirectory + "/output.json", JSON.stringify(output,null,2));
+        fs.writeFileSync(outputDirectory + "/output.json", JSON.stringify(output,null,2).concat('\n'));
       }
     }
     const prettifier = new Prettify(data.contracts);
